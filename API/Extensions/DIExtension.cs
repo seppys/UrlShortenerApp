@@ -9,6 +9,7 @@ namespace API.Extensions
         public static IServiceCollection AddDiServices(this IServiceCollection services)
         {
             services.AddScoped<IUrlRepository, UrlRepository>();
+            services.AddScoped<IAccountRepository, AccountRepository>();
 
             return services;
         }
