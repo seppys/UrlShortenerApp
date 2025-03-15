@@ -1,6 +1,7 @@
 using System.Text;
 using API.Data;
 using API.Interfaces;
+using API.Models;
 using API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -12,8 +13,8 @@ namespace API.Extensions
     {
         public static IServiceCollection AddAuthServices(this IServiceCollection services, IConfiguration config)
         {
-            services.AddIdentityCore<IdentityUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<DataContext>(); ;
-            services.AddIdentityApiEndpoints<IdentityUser>()
+            services.AddIdentityCore<User>().AddRoles<IdentityRole>().AddEntityFrameworkStores<DataContext>(); ;
+            services.AddIdentityApiEndpoints<User>()
                 .AddEntityFrameworkStores<DataContext>();
             services.AddAuthorization();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

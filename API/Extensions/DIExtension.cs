@@ -10,6 +10,7 @@ namespace API.Extensions
         {
             services.AddScoped<IUrlRepository, UrlRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             return services;
         }

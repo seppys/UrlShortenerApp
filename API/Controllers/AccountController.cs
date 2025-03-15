@@ -1,5 +1,6 @@
 using API.Dtos;
 using API.Interfaces;
+using API.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -49,7 +50,7 @@ namespace API.Controllers
             return Ok(response);
         }
 
-        private async Task<string> NewJWT(IdentityUser user)
+        private async Task<string> NewJWT(User user)
         {
             var roles = await _accountRepository.GetRolesAsync(user);
             

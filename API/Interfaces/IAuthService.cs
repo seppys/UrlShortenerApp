@@ -1,11 +1,12 @@
+using API.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace API.Interfaces
 {
     public interface IAuthService
     {
-        string NewJwt(IdentityUser user, IList<string> roles);
+        string NewJwt(User user, IList<string> roles);
         public string? GetToken(string authorization);
-        public Task<IdentityUser?> GetUserByToken(string token);
+        public Task<User?> GetUserByToken(string token);
     }
 }

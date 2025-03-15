@@ -2,6 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using API.Interfaces;
+using API.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 
@@ -11,15 +12,15 @@ namespace API.Services
     {
 
         private readonly IConfiguration _config;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<User> _userManager;
 
-        public AuthService(IConfiguration config, UserManager<IdentityUser> userManager)
+        public AuthService(IConfiguration config, UserManager<User> userManager)
         {
             _config = config;
             _userManager = userManager;
         }
 
-        public string NewJwt(IdentityUser user, IList<string> roles)
+        public string NewJwt(User user, IList<string> roles)
         {
             var claims = new List<Claim>
             {
@@ -56,7 +57,7 @@ namespace API.Services
             return token;
         }
 
-        public async Task<IdentityUser?> GetUserByToken(string token)
+        public async Task<User?> GetUserByToken(string token)
         {
             var jwtHandler = new JwtSecurityTokenHandler();
             var readableToken = jwtHandler.CanReadToken(token);

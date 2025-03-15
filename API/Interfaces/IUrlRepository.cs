@@ -6,6 +6,7 @@ namespace API.Interfaces
     {
         Task<IEnumerable<Url>> GetAllAsync();
         Task<Url?> GetByIdAsync(int id);
+        Task<IEnumerable<Url>> GetByUserIdAsync(string id);
         Task<Url?> GetByOriginalUrlAsync(string originalUrl);
         Task<Url?> GetByShortUrlAsync(string shortUrl);
         Task<bool> CreateAsync(Url url);
