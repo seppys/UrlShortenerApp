@@ -1,0 +1,36 @@
+<div>
+    <mat-toolbar>
+        <div class="container w-75 d-flex">
+            <div class="p-3 align-content-center title">
+                <a routerLink="/">Url Shortener</a>
+            </div>
+            <div class="p-3 align-content-center">
+                <a routerLink="/urls/my-urls" routerLinkActive="active">My Url's</a>
+            </div>
+            <div class="p-3 align-content-center">
+                <a routerLink="/urls/popular" routerLinkActive="active">Most popular Url's</a>
+            </div>
+            <div class="ms-auto p-3 align-content-center d-flex column">
+                @if (!accountService.isLogged()) {
+                    <div class="d-flex column">
+                        <div class="m-2">
+                            <button mat-stroked-button routerLink="/account/login">Login</button>
+                        </div>
+                        <div class="m-2">
+                            <button mat-flat-button routerLink="/account/register">Register</button>
+                        </div>
+                    </div>
+                }
+                @else {
+                    <div>
+                        <button mat-button [matMenuTriggerFor]="accountMenu">Account</button>
+                        <mat-menu #accountMenu="matMenu" [xPosition]="'before'">
+                            <button mat-menu-item>Edit profile</button>
+                            <button mat-menu-item (click)="logout()">Logout</button>
+                        </mat-menu>
+                    </div>    
+                }
+            </div>
+        </div>
+    </mat-toolbar>
+</div>

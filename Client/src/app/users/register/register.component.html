@@ -1,0 +1,42 @@
+<div class="container w-50 justify-items-center mt-3 h-100">
+
+    <h2>Register Form</h2>
+
+    <form mat-form-field [formGroup]="registerForm">
+        <div class="d-flex row">
+            <mat-form-field class="my-2">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email">
+                @if (registerForm.get("email")?.hasError("required")) {
+                    <mat-error>The email is required</mat-error>
+                }
+                @else if (registerForm.get("email")?.hasError("email")) {
+                    <mat-error>Invalid email</mat-error>
+                }
+            </mat-form-field>
+            <mat-form-field class="my-2">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password">
+                @if (registerForm.get("password")?.hasError("required")) {
+                    <mat-error>The username is required</mat-error>
+                }
+                @else if (registerForm.get("password")?.hasError("pattern")) {
+                    <mat-error>
+                        The password must have a minimum length of 8, 
+                        and contain at least 1 lowercase letter, 1 uppercase letter, 1 digit and 1 special character
+                    </mat-error>
+                }
+            </mat-form-field>
+            <div class="d-flex column justify-content-center">
+                <div class="m-3">
+                    <button mat-stroked-button (click)="location.back()">Cancel</button>
+                </div>
+                <div class="m-3">
+                    <button mat-flat-button (click)="register()" [disabled]="registerForm.invalid">Register</button>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+</div>
