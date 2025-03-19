@@ -7,11 +7,15 @@ import { Url } from '../_models/url';
 })
 export class UrlService {
 
-  private baseUrl = 'http://localhost:5000/api/';
+  private baseUrl = 'https://localhost:5001/api/';
   
   private httpClient = inject(HttpClient);
 
   getAll() {
     return this.httpClient.get<Url[]>(this.baseUrl + 'url');
+  }
+
+  getByCurrentUser() {
+    return this.httpClient.get<Url[]>(this.baseUrl + 'url/user');
   }
 }

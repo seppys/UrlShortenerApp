@@ -8,7 +8,7 @@ import { map } from 'rxjs';
 })
 export class AccountService {
 
-  private baseUrl = 'http://localhost:5000/api/';
+  private baseUrl = 'https://localhost:5001/api/';
 
   private httpClient = inject(HttpClient);
 
