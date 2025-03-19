@@ -32,6 +32,19 @@ namespace API.Controllers
             return Ok(getUrlsDto);
         }
 
+        [Authorize]
+        [HttpGet("user")] // api/url/user
+        public async Task<ActionResult> GetAllByUser()
+        {
+            var user = await _accountRepository.GetUserByIdAsync(User.GetId());
+            if (user == null)
+                return BadRequest();
+
+            var urls = await _urlRepository.GetByUserIdAsync(user.Id);
+            var getUrlsDto = _mapper.Map<List<getUrlDto>>(urls);
+            return Ok(getUrlsDto);
+        }
+
         [HttpGet("{urlCode}")] // api/url/{urlCode}
         public async Task<ActionResult> Redirect()
         {
