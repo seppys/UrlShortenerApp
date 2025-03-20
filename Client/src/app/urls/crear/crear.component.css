@@ -1,3 +1,7 @@
-h2 {
+h2, p {
     color: white;
+}
+
+.background-purple {
+    background-color: #3a023ac2;
 }

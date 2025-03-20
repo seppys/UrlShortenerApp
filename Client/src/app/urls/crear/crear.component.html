@@ -1,17 +1,11 @@
-<div class="container w-70 pt-5">
+<div class="container h-100vh w-70 pt-5">
 
     <h2>Short a new URL</h2>
 
-    @if (this.createdUrl) {
-    <p>{{this.createdUrl.originalUrl}}</p>
-    <p>{{this.createdUrl.shortUrl}}</p>
-    }
-
-    <div>
+    <div class="my-5">
         <form [formGroup]="urlForm" class="form">
             <div class="d-flex column justify-content-center">
                 <div class="w-50 d-flex row align-content-between ml-3 mt-3">
-
                     <mat-form-field>
                         <mat-label>Url</mat-label>
                         <input matInput formControlName="originalUrl">
@@ -21,7 +15,6 @@
                         <mat-error>Invalid Url format</mat-error>
                         }
                     </mat-form-field>
-
                 </div>
             </div>
 
@@ -33,5 +26,19 @@
                 </button>
             </div>
         </form>
+
+        @if (this.createdUrl) {
+            <div class="d-flex justify-content-center mt-5">
+                <div class="align-content-center mx-1 px-2 background-purple">
+                    <p class="m-auto">{{this.createdUrl.originalUrl}}</p>
+                </div>
+                <div class="mx-1">
+                    <button mat-icon-button matTooltip="Copy url to clipboard">
+                        <mat-icon>content_copy</mat-icon>
+                    </button>
+                </div>
+            </div>
+            }
     </div>
+
 </div>

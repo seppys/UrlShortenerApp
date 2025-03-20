@@ -4,13 +4,15 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { NewUrlDto } from '../../_dtos/newUrlDto';
 import { UrlService } from '../../_services/url.service';
 import { Url } from '../../_models/url';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-crear',
   standalone: true,
   imports: [
     MaterialModule,
-    ReactiveFormsModule
+    MatTooltipModule,
+    ReactiveFormsModule,
   ],
   templateUrl: './crear.component.html',
   styleUrl: './crear.component.css'
