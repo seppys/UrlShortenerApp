@@ -1,7 +1,8 @@
 using API.Dtos;
 using API.Interfaces;
 using API.Models;
-using Microsoft.AspNetCore.Identity;
+using API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -48,6 +49,38 @@ namespace API.Controllers
             var response = new { Token = jwt };
 
             return Ok(response);
+        }
+
+        [Authorize]
+        [HttpPost("edit")] // api/account/edit
+        public async Task<ActionResult> EditInformation(UserInformationDto userInformationDto)
+        {
+            var user = await _accountRepository.GetUserByIdAsync(User.GetId());
+
+            if (user == null)
+                return Unauthorized("Unauthorized");
+
+            var results = await _accountRepository.ChangeUsernameAsync(user, userInformationDto.Email);
+            if (!results.Succeeded)
+                return BadRequest(results.Errors.First().Description);
+
+            return Ok();
+        }
+
+        [Authorize]
+        [HttpPost("edit-password")] // api/account/edit-password
+        public async Task<ActionResult> EditPassword(EditPasswordDto editPasswordDto)
+        {
+            var user = await _accountRepository.GetUserByIdAsync(User.GetId());
+
+            if (user == null || ! await _accountRepository.CheckPasswordAsync(user, editPasswordDto.OldPassword))
+                return Unauthorized("Unauthorized");
+
+            var results = await _accountRepository.ChangePasswordAsync(user, editPasswordDto.OldPassword, editPasswordDto.NewPassword);
+            if (!results.Succeeded)
+                return BadRequest(results.Errors.First().Description);
+
+            return Ok();
         }
 
         private async Task<string> NewJWT(User user)
