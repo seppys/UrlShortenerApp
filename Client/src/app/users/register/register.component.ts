@@ -46,7 +46,7 @@ export class RegisterComponent {
     this.accountService.register(newUserRegister).subscribe({
       next: () => {
         this.toastr.success("Registered succesfully!");
-        this.router.navigateByUrl("/login");
+        this.router.navigateByUrl("/");
       },
       error: () => this.registerForm.reset()
     })

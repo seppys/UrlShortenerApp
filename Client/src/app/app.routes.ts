@@ -5,13 +5,21 @@ import { CrearComponent } from './urls/crear/crear.component';
 import { HomeComponent } from './home/home.component';
 import { PopularListComponent } from './urls/popular-list/popular-list.component';
 import { UserUrlsListComponent } from './urls/user-urls-list/user-urls-list.component';
+import { authGuard } from './_guards/auth.guard';
 
 export const routes: Routes = [
-    {path: 'urls/new', component: CrearComponent},
     {path: 'urls/popular', component: PopularListComponent},
-    {path: 'urls/my-urls', component: UserUrlsListComponent},
+    {path: '', component: HomeComponent},
+    { path: "",
+        runGuardsAndResolvers: 'always',
+        canActivate: [authGuard],
+        children:
+        [
+            {path: 'urls/new', component: CrearComponent},
+            {path: 'urls/my-urls', component: UserUrlsListComponent},
+        ]
+    },
     {path: 'account/register', component: RegisterComponent},
     {path: 'account/login', component: LoginComponent},
-    {path: '', component: HomeComponent},
     {path: '*', component: HomeComponent}
 ];

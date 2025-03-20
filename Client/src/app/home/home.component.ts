@@ -18,6 +18,6 @@ export class HomeComponent {
     if (!this.accountService.isLogged())
       this.router.navigateByUrl("/account/register")
     else
-      this.router.navigateByUrl("/")
+      this.router.navigateByUrl("/urls/new")
   }
 }
