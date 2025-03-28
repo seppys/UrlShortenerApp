@@ -24,5 +24,5 @@ export const routes: Routes = [
     },
     {path: 'account/register', component: RegisterComponent},
     {path: 'account/login', component: LoginComponent},
-    {path: '*', component: HomeComponent}
+    {path: '**', component: HomeComponent}
 ];
