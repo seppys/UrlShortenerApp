@@ -37,6 +37,7 @@ namespace API.Services
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
             var tokenDescriptor = new JwtSecurityToken(
                 claims: claims,
+                // Token is valid for 720 minutes (12 hours)
                 expires: DateTime.Now.AddMinutes(720),
                 signingCredentials: credentials);
 
