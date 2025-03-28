@@ -20,7 +20,10 @@ export class PopularListComponent {
 
   constructor() {
     this.urlService.getAll().subscribe({
-      next: (urls: Url[]) => this.urls = urls
+      next: (urls: Url[]) => {
+        const sortedUrls = urls.sort((a, b) => b.clicks - a.clicks);
+        this.urls = sortedUrls?.slice(0, 10);
+      }
     })
   }
 }

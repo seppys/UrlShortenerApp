@@ -16,9 +16,9 @@ export class ListComponent implements OnInit {
   @Input("urls") urlsInput: Url[] | undefined;
 
   dataSource : Url[] | undefined;
-  displayedColumns = ['id', 'shortUrl', 'originalUrl', 'clicks']
+  displayedColumns = ['shortUrl', 'originalUrl', 'clicks']
 
   ngOnInit(): void {
-    this.dataSource = this.urlsInput
+    this.dataSource = this.urlsInput;
   }
 }
