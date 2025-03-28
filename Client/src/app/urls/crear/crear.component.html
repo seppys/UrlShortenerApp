@@ -1,6 +1,6 @@
 <div class="container h-100vh w-70 pt-5">
 
-    <h2>Short a new URL</h2>
+    <h2 class="text-center">Short a new URL</h2>
 
     <div class="my-5">
         <form [formGroup]="urlForm" class="form">
@@ -28,12 +28,14 @@
         </form>
 
         @if (this.createdUrl) {
-            <div class="d-flex justify-content-center mt-5">
+            <div class="d-flex justify-content-center mt-2">
                 <div class="align-content-center mx-1 px-2 background-purple">
-                    <p class="m-auto">{{this.createdUrl.originalUrl}}</p>
+                    <a href="{{this.createdUrl.shortUrl}}" target="_blank" class="text-decoration-none text-white">
+                        {{this.createdUrl.shortUrl}}
+                    </a>
                 </div>
                 <div class="mx-1">
-                    <button mat-icon-button matTooltip="Copy url to clipboard">
+                    <button mat-icon-button matTooltip="Copy url to clipboard" (click)="copyToClipboard()">
                         <mat-icon>content_copy</mat-icon>
                     </button>
                 </div>

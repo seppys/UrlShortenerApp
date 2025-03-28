@@ -42,6 +42,12 @@ export class CrearComponent {
     return this.urlForm.dirty
   }
 
+  copyToClipboard(): void {
+    if (this.createdUrl?.shortUrl) {
+        navigator.clipboard.writeText(this.createdUrl.shortUrl);
+    }
+}
+
   onSubmit() {
     this.urlForm.markAsPristine();
     const newUrlForm: NewUrlDto = { ...this.urlForm.value }
