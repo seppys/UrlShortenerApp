@@ -52,7 +52,7 @@ namespace API.Controllers
         }
 
         [Authorize]
-        [HttpPost("edit")] // api/account/edit
+        [HttpPatch("edit")] // api/account/edit
         public async Task<ActionResult> EditInformation(UserInformationDto userInformationDto)
         {
             var user = await _accountRepository.GetUserByIdAsync(User.GetId());
@@ -68,7 +68,7 @@ namespace API.Controllers
         }
 
         [Authorize]
-        [HttpPost("edit-password")] // api/account/edit-password
+        [HttpPatch("edit-password")] // api/account/edit-password
         public async Task<ActionResult> EditPassword(EditPasswordDto editPasswordDto)
         {
             var user = await _accountRepository.GetUserByIdAsync(User.GetId());

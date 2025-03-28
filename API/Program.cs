@@ -23,8 +23,13 @@ if (builder.Environment.IsDevelopment())
 
 app.UseCors();
 
+app.UseAuthentication();
+
+app.UseAuthorization();
+
 app.UseHttpsRedirection();
 
 app.MapControllers();
+
 
 app.Run();

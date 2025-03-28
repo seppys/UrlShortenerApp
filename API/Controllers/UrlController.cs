@@ -65,11 +65,6 @@ namespace API.Controllers
             if (user == null)
                 return BadRequest();
 
-            var existsUrl = await _urlRepository.GetByOriginalUrlAsync(url.OriginalUrl);
-
-            if (existsUrl != null)
-                return BadRequest("This url already exists");
-
             var randomString = RandomStringGenerator.GenerateRandomString(5);
             var shortUrl =$"{Request.Scheme}://{Request.Host.Value}/api/url/{randomString}";
 
