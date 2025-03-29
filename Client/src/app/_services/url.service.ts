@@ -23,4 +23,8 @@ export class UrlService {
   newUrl(newUrlDto: NewUrlDto) {
     return this.httpClient.post<Url>(this.baseUrl + 'url/new', newUrlDto);
   }
+
+  deleteUrl(id: number) {
+    return this.httpClient.delete(this.baseUrl + 'url/' + id);
+  }
 }
