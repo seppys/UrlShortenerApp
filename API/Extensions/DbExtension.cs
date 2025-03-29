@@ -7,9 +7,11 @@ namespace API.Extensions
 	{
 		public static IServiceCollection AddDbServices(this IServiceCollection services, IConfiguration config)
 		{
+			string connectionString = config["MySql:ConnectionString"];
+
 			services.AddDbContext<DataContext>(options =>
 			{
-				options.UseSqlite("Data Source=database.db");
+				options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 			});
 
 			return services;
