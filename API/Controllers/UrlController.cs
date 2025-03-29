@@ -85,5 +85,28 @@ namespace API.Controllers
 
             return Ok(getUrlDto);
         }
+
+        [Authorize]
+        [HttpDelete("{id}")] // api/url/{id}
+        public async Task<ActionResult> DeleteUrl(int id)
+        {
+            var user = await _accountRepository.GetUserByIdAsync(User.GetId());
+            if (user == null)
+                return BadRequest();
+
+            var url = await _urlRepository.GetByIdAsync(id);
+            if (url == null)
+                return NotFound();
+
+            if (url.UserId != user.Id)
+                return Forbid();
+
+            var results = await _urlRepository.DeleteAsync(url);
+
+            if (!results)
+                return BadRequest();
+
+            return Ok();
+        }
     }
 }
