@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 })
 export class AccountService {
 
-  private baseUrl = environment.baseUrl;
+  private baseUrl = "https://urlss.up.railway.app/api/";
 
   private httpClient = inject(HttpClient);
 
