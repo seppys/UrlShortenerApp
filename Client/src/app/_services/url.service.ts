@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Url } from '../_models/url';
 import { NewUrlDto } from '../_dtos/newUrlDto';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UrlService {
 
-  private baseUrl = 'https://localhost:5001/api/';
+  private baseUrl = environment.baseUrl;
   
   private httpClient = inject(HttpClient);
 

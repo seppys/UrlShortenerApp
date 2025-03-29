@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { AuthDto } from '../_dtos/authDto';
 import { map } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
 
-  private baseUrl = 'https://localhost:5001/api/';
+  private baseUrl = environment.baseUrl;
 
   private httpClient = inject(HttpClient);
 
