@@ -5,13 +5,12 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-COPY ["API/API.csproj", "API/"]
-
-RUN dotnet restore "API/API.csproj"
+COPY ["API.csproj", "."]
+RUN dotnet restore "API.csproj"
 
 COPY . .
 
-WORKDIR "/src/API"
+WORKDIR "/src"
 RUN dotnet build "API.csproj" -c Release -o /app/build
 
 FROM build AS publish
